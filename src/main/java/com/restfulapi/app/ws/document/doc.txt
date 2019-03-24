@@ -25,7 +25,7 @@
 
 
                               ==========3.1. @Component======
-     We can use @Component across the application to mark the beans as Spring’s managed components.
+              We can use @Component across the application to mark the beans as Spring’s managed components.
 
               @Service and @Repository are special cases of @Component.
               They are technically the same but we use them for the different purposes.
@@ -39,3 +39,19 @@
                    │ @Service   │ stereotype for service layer                        │
                    │ @Controller│ stereotype for presentation layer (spring-mvc)      │
                    └────────────┴─────────────────────────────────────────────────────┘
+
+                   ========= @Bean=========
+               @Bean is a method-level annotation and a direct analog of the XML <bean/> element.
+               A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container.
+
+
+              =================== Extending WebSecurityConfigureAdapter======
+               Next, create a class that extends the WebSecurityConfigureAdapter.
+
+               Add the annotation @EnableWebSecurity to the class to tell spring that
+                this class is spring security configuration.
+
+               Override the two overloaded methods configure(HttpSecurity) and configure(AuthenticationManagerBuilder).
+               The configure(HttpSecurity) defines the mapping of secured URLs or path that will determine if the user
+               can access specific pages. The configure(AuthenticationmanagerBuilder) determines how the security will
+               handle the retrieval of user information commonly in the database.
