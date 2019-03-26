@@ -55,3 +55,27 @@
                The configure(HttpSecurity) defines the mapping of secured URLs or path that will determine if the user
                can access specific pages. The configure(AuthenticationmanagerBuilder) determines how the security will
                handle the retrieval of user information commonly in the database.
+
+               ===========ApplicationContextAware=============
+              It is just how spring works. Spring calls that method as part of bean initialization.
+              When spring instantiates beans, it looks for a couple of interfaces like
+              ApplicationContextAware and InitializingBean.
+             If they are found, the methods are invoked. E.g. (very simplified)
+
+                @Bean and @Autowired do two very different things.
+                The other answers here explain in a little more detail, but at a simpler level:
+
+                @Bean tells Spring 'here is an instance of this class,
+                please keep hold of it and give it back to me when I ask'.
+
+                 @Autowired says 'please give me an instance of this class, for example,
+                  one that I created with an @Bean annotation earlier'.
+
+
+We can inject spring ApplicationContext as a bean into any bean. By doing so, we are effectively making
+our bean ApplicationContext aware. Our bean then programmatically can retrieve other beans by calling
+ApplicationContext.getBean()or retrieve any resources by calling applicationContext#getResource()
+
+
+                    =========STATELESS===========
+    stateless – no session will be created or used by Spring Security
