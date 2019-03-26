@@ -1,8 +1,8 @@
 package com.restfulapi.app.ws.ui.controller;
 
-import com.restfulapi.app.ws.ui.model.request.UserDetailsRequestModel;
 import com.restfulapi.app.ws.service.UserService;
 import com.restfulapi.app.ws.shared.dto.UserDto;
+import com.restfulapi.app.ws.ui.model.request.UserDetailsRequestModel;
 import com.restfulapi.app.ws.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping
-    public String getUser() {
-        return "get user was called";
+    @GetMapping(path = "/{id}")
+    public UserRest getUser(@PathVariable String id) {
+
+        UserRest returnValue=new UserRest();
+        UserDto userDto=userService.getUserByUserId(id);
+        BeanUtils.copyProperties(userDto,returnValue);
+
+
+        return returnValue;
     }
 
     @PostMapping
